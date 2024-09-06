@@ -1,2 +1,1 @@
-# mme-benchmark.github.io
-mme benchmark
+# video-mme.github.io

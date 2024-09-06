@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> MME </title>
+
+  <link rel="icon" href="">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+  <link rel="stylesheet" href="./static/css/video-player.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+
+  <style>
+    .no-sort {
+      cursor: default;
+      pointer-events: none;
+      background-image: none !important; /* Remove the sort arrow */*/
+    }
+    
+    .ext-link {
+      white-space: nowrap;
+    }
+/*  .table-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*  }*/
+/*  */
+/*  .table-container table {*/
+/*    margin: 0 auto;*/
+/*  .table-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    overflow-x: auto; /* 处理表格宽度超出容器的问题 */*/
+/*    width: 100%;*/
+/*  }*/
+/*  */
+/*  .table-container table {*/
+/*    margin: 0 auto;*/
+/*    max-width: 100%; /* 确保表格不超出容器宽度 */*/
+/*  }*/
+    .table-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto; /* 处理表格宽度超出容器的问题 */
+      width: 100%;
+    }
+    
+    .table-container table {
+      margin: 0 auto;
+      width: max-content; /* 确保表格内容不被压缩 */
+    }
+  </style>
+
+</head>
+<body>
+
+  
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <p style="font-size:18px; display: inline; margin-right: -2px; margin-top: 12px;">🔥</p>
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/BradyFU/Video-MME">
+            <b>Video-MME</b> 
+          </a>
+          <a class="navbar-item" href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">
+            <b>Awesome-MLLM</b> 
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+<!--        <img src="" style="width:1.6em;vertical-align: middle" alt="Logo"/>-->
+            <span class="mme" style="vertical-align: middle">MME</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle", style="margin-bottom: 20px;">
+             A Comprehensive Evaluation Benchmark for  <br> Multimodal Large Language Models
+          </h2>
+          
+          <div class="is-size-5 publication-authors", style="width: 80%; margin: 20px auto;", >
+            <span class="author-block", style="font-size:24px"><a href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">MME Team</a></span>
+
+        </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block"><sup style="color:#6fbf73;">1</sup>USTC,</span>
+            <span class="author-block"><sup style="color:#ed4b82">2</sup>XMU,</span>
+            <span class="author-block"><sup style="color:#9400D3">3</sup>HKU,</span>
+            <span class="author-block"><sup style="color:#ffac33">4</sup>PKU,</span>
+            <span class="author-block"><sup style="color:#18acfb">5</sup>CUHK,</span>
+            <span class="author-block"><sup style="color:#33ffd6">6</sup>ECNU</span><br> -->
+            <!-- <span class="paper-block"><b style="color:#f41c1c">ICLR 2024 Oral</b> (85 in 7304, 1.2%)</span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2306.13549"
+                   class="external-link button is-normal is-rounded is-dark">
+                <!-- <a href="https://lupantech.github.io/papers/arxiv23_mathvista.pdf"
+                   class="external-link button is-normal is-rounded is-dark"> -->
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models?tab=readme-ov-file#-dataset"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">📊</p>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span> 
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="#leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🏆</p>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+        Multimodal Large Language Model (MLLM) relies on the powerful LLM to perform multimodal tasks, showing amazing emergent abilities in recent studies, such as writing poems based on an image. However, it is difficult for these case studies to fully reflect the performance of MLLM, lacking a comprehensive evaluation. In this paper, we fill in this blank, presenting the first MLLM Evaluation benchmark MME. It measures both perception and cognition abilities on a total of 14 subtasks. In order to avoid data leakage that may arise from direct use of public datasets for evaluation, the annotations of instruction-answer pairs are all manually designed. The concise instruction design allows us to fairly compare MLLMs, instead of struggling in prompt engineering. Besides, with such an instruction, we can also easily carry out quantitative statistics. A total of 50+ advanced MLLMs are comprehensively evaluated on our MME, which not only suggests that existing MLLMs still have a large room for improvement, but also reveals the potential directions for the subsequent model optimization.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    updateRowNumbers();
+    document.querySelector("#results").addEventListener("click", updateRowNumbers);
+  });
+
+  function updateRowNumbers() {
+    const rows = document.querySelectorAll("#results tbody tr");
+    rows.forEach((row, index) => {
+      row.querySelector("td").innerText = index + 1;
+    });
+  }
+</script>
+
+
+  <!-- DATASET SECTION -->
+<!--  <section class="hero is-light is-small">-->
+<!--<div class="hero-body has-text-centered">-->
+<!--  <h1 class="title is-1 mathvista_other">-->
+<!--    <span class="mathvista_other" style="vertical-align: middle">Benchmark</span>-->
+<!--  </h1>-->
+<!--</div>-->
+<!--  </section>-->
+  
+  <section class="section">
+    <div class="container">
+      <div class="content has-text-centered">
+        <img src="static/images/mme-fig1.png" style="width: 95%;"/>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+          <div class="content">
+            <div class="video-duration">
+              <p>
+                Sum of the scores of all perception subtasks, including existence, count, position, color, poster, celebrity, scene, landmark, artwork, and OCR. The full score of each subtask is 200, and that of all perception is 2000.
+              </p>
+              <p>
+                Sum of the scores of all cognition subtasks, including commonsense reasoning, numerical calculation, text translation, and code reasoning. The full score of each subtask is 200, and that of all cognition is 800.
+              </p>
+            </div>
+            
+            <!-- Add a new div around the table -->
+            <div class="table-container">
+              <table class="js-sort-table" id="results">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;"><strong>#</strong></th>
+                    <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 110px;"><strong>Model</strong></th>
+                    <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;"><strong>LLM <br>Params</strong></th>
+<!--                <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Date</strong></th>-->
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Score</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Perception</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Cognition</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Existence</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Count</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Position</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Color</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Poster</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Celebrity</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Scene</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Landmark</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Artwork</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>OCR</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Commonsense <br>Reasoning</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Numerical <br>Calculation</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Text <br>Translation</strong></th>
+                    <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Code <br>Reasoning</strong></th>
+<!--                <th rowspan="2" style="vertical-align: middle; width: 50px;"><strong>Date</strong></th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Table rows go here -->
+                  <tr>
+<!--                <td>1</td>-->
+<!--                <td><a href="https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start">Qwen-VL-Max</a></td>-->
+<!--                <td>-</td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen-VL-Max</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Alibaba</p>-->
+                      </b>
+                    </td>
+                    <td>-</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2433.61</td>
+                    <td>1790.04</td>
+                    <td>643.57</td>
+                    <td>183.33</td>
+                    <td>166.67</td>
+                    <td>176.67</td>
+                    <td>180.00</td>
+                    <td>187.76</td>
+                    <td>184.12</td>
+                    <td>173.00</td>
+                    <td>187.50</td>
+                    <td>166.00</td>
+                    <td>185.00</td>
+                    <td>148.57</td>
+                    <td>155.00</td>
+                    <td>170.00</td>
+                    <td>170.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>2</td>-->
+<!--                <td><a href="https://github.com/OpenBMB/MiniCPM-V">MiniCPM-V 2.6</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/OpenBMB/MiniCPM-V" class="ext-link" style="font-size: 16px; margin-left: 5px;">MiniCPM-V 2.6</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">OpenBMB</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>8B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2365.88</td>
+                    <td>1668.03</td>
+                    <td>697.86</td>
+                    <td>195.00</td>
+                    <td>160.00</td>
+                    <td>136.67</td>
+                    <td>175.00</td>
+                    <td>179.93</td>
+                    <td>151.18</td>
+                    <td>153.25</td>
+                    <td>177.50</td>
+                    <td>147.00</td>
+                    <td>192.50</td>
+                    <td>157.86</td>
+                    <td>185.00</td>
+                    <td>185.00</td>
+                    <td>170.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>3</td>-->
+<!--                <td><a href="https://github.com/InternLM/InternLM-XComposer">InternLM-XComposer2-VL</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/InternLM/InternLM-XComposer" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternLM-XComposer2-VL 2.6</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">InternLM</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2242.71</td>
+                    <td>1712.00</td>
+                    <td>530.71</td>
+                    <td>195.00</td>
+                    <td>160.00</td>
+                    <td>163.33</td>
+                    <td>195.00</td>
+                    <td>171.09</td>
+                    <td>153.82</td>
+                    <td>164.75</td>
+                    <td>176.00</td>
+                    <td>185.50</td>
+                    <td>147.50</td>
+                    <td>145.71</td>
+                    <td>137.50</td>
+                    <td>147.50</td>
+                    <td>100.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>4</td>-->
+<!--                <td><a href="https://github.com/jiutiancv/JT-VL-Chat">JT-VL-Chat-V2.0</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/jiutiancv/JT-VL-Chat" class="ext-link" style="font-size: 16px; margin-left: 5px;">JT-VL-Chat-V2.0</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">ChinaMobile</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>-</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2204.54</td>
+                    <td>1743.11</td>
+                    <td>461.43</td>
+                    <td>200.00</td>
+                    <td>170.00</td>
+                    <td>173.33</td>
+                    <td>190.00</td>
+                    <td>184.35</td>
+                    <td>176.18</td>
+                    <td>161.50</td>
+                    <td>176.75</td>
+                    <td>148.50</td>
+                    <td>162.50</td>
+                    <td>161.43</td>
+                    <td>117.50</td>
+                    <td>72.50</td>
+                    <td>110.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>5</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2404.16821">InternVL-Chat-V1.5</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2404.16821" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternVL-Chat-V1.5</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">InternVL</p>-->
+                      </b>
+                    </td>
+                    <td>20B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2187.84</td>
+                    <td>1637.84</td>
+                    <td>550.00</td>
+                    <td>190.00</td>
+                    <td>175.00</td>
+                    <td>166.67</td>
+                    <td>178.33</td>
+                    <td>173.81</td>
+                    <td>138.53</td>
+                    <td>154.75</td>
+                    <td>177.75</td>
+                    <td>143.00</td>
+                    <td>140.00</td>
+                    <td>135.00</td>
+                    <td>125.00</td>
+                    <td>185.00</td>
+                    <td>105.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>6</td>-->
+<!--                <td><a href="https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start">Qwen-VL-Plus</a></td>-->
+<!--                <td>-</td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen-VL-Plus</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Alibaba</p>-->
+                      </b>
+                    </td>
+                    <td>-</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2183.39</td>
+                    <td>1681.25</td>
+                    <td>502.14</td>
+                    <td>175.00</td>
+                    <td>153.33</td>
+                    <td>161.67</td>
+                    <td>180.00</td>
+                    <td>181.63</td>
+                    <td>184.12</td>
+                    <td>151.00</td>
+                    <td>191.00</td>
+                    <td>156.00</td>
+                    <td>147.50</td>
+                    <td>142.14</td>
+                    <td>85.00</td>
+                    <td>185.00</td>
+                    <td>90.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>7</td>-->
+<!--                <td><a href="https://llava-vl.github.io/blog/2024-01-30-llava-1-6/">LLaVA-1.6</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://llava-vl.github.io/blog/2024-01-30-llava-1-6" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaVA-1.6</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>-->
+                      </b>
+                    </td>
+                    
+                    <td>34B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2028.61</td>
+                    <td>1631.47</td>
+                    <td>397.14</td>
+                    <td>190.00</td>
+                    <td>170.00</td>
+                    <td>138.33</td>
+                    <td>195.00</td>
+                    <td>169.39</td>
+                    <td>160.00</td>
+                    <td>164.50</td>
+                    <td>165.25</td>
+                    <td>139.00</td>
+                    <td>140.00</td>
+                    <td>152.14</td>
+                    <td>72.50</td>
+                    <td>72.50</td>
+                    <td>100.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>8</td>-->
+<!--                <td><a href="https://github.com/BAAI-DCAI/Bunny">Bunny-8B</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/BAAI-DCAI/Bunny" class="ext-link" style="font-size: 16px; margin-left: 5px;">Bunny-8B</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">BAAI</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>8B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>2011.64</td>
+                    <td>1644.14</td>
+                    <td>367.50</td>
+                    <td>195.00</td>
+                    <td>165.00</td>
+                    <td>135.00</td>
+                    <td>195.00</td>
+                    <td>167.35</td>
+                    <td>175.29</td>
+                    <td>153.75</td>
+                    <td>170.25</td>
+                    <td>132.50</td>
+                    <td>155.00</td>
+                    <td>140.00</td>
+                    <td>75.00</td>
+                    <td>95.00</td>
+                    <td>57.50</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>9</td>-->
+<!--                <td><a href="https://github.com/jiutiancv/JT-VL-Chat">JT-VL-Chat</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/jiutiancv/JT-VL-Chat" class="ext-link" style="font-size: 16px; margin-left: 5px;">JT-VL-Chat</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">ChinaMobile</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>-</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1982.15</td>
+                    <td>1642.51</td>
+                    <td>339.64</td>
+                    <td>185.00</td>
+                    <td>173.33</td>
+                    <td>145.00</td>
+                    <td>175.00</td>
+                    <td>168.71</td>
+                    <td>161.47</td>
+                    <td>157.75</td>
+                    <td>173.50</td>
+                    <td>132.75</td>
+                    <td>170.00</td>
+                    <td>122.14</td>
+                    <td>67.50</td>
+                    <td>105.00</td>
+                    <td>45.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>10</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2311.06607.pdf">Monkey-Chat</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2311.06607.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">Monkey-Chat</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">HUST</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1923.82</td>
+                    <td>1522.39</td>
+                    <td>401.43</td>
+                    <td>185.00</td>
+                    <td>150.00</td>
+                    <td>118.33</td>
+                    <td>185.00</td>
+                    <td>178.91</td>
+                    <td>142.65</td>
+                    <td>161.75</td>
+                    <td>176.50</td>
+                    <td>144.25</td>
+                    <td>80.00</td>
+                    <td>131.43</td>
+                    <td>42.50</td>
+                    <td>137.50</td>
+                    <td>90.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>11</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2311.12793.pdf">ShareGPT4V</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2311.12793.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">ShareGPT4V</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Shanghai AI Laboratory</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>13B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1921.92</td>
+                    <td>1618.70</td>
+                    <td>303.21</td>
+                    <td>190.00</td>
+                    <td>165.00</td>
+                    <td>153.33</td>
+                    <td>185.00</td>
+                    <td>169.05</td>
+                    <td>153.82</td>
+                    <td>168.00</td>
+                    <td>174.00</td>
+                    <td>128.00</td>
+                    <td>132.50</td>
+                    <td>125.71</td>
+                    <td>45.00</td>
+                    <td>80.00</td>
+                    <td>52.50</td>
+                  </tr>
+                  <tr>
+<!--                <td>12</td>-->
+<!--                <td><a href="https://github.com/InternLM/InternLM-XComposer">InternLM-XComposer-VL</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/InternLM/InternLM-XComposer" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternLM-XComposer-VL</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">InternLM</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1919.51</td>
+                    <td>1528.44</td>
+                    <td>391.07</td>
+                    <td>190.00</td>
+                    <td>158.33</td>
+                    <td>126.67</td>
+                    <td>165.00</td>
+                    <td>161.90</td>
+                    <td>150.29</td>
+                    <td>159.75</td>
+                    <td>165.25</td>
+                    <td>126.25</td>
+                    <td>125.00</td>
+                    <td>138.57</td>
+                    <td>55.00</td>
+                    <td>112.50</td>
+                    <td>85.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>13</td>-->
+<!--                <td><a href="https://github.com/Alpha-VLLM/LLaMA2-Accessory/tree/main/SPHINX">SPHINX</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/Alpha-VLLM/LLaMA2-Accessory/tree/main/SPHINX" class="ext-link" style="font-size: 16px; margin-left: 5px;">SPHINX</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Shanghai AI Laboratory</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>13B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1870.15</td>
+                    <td>1560.15</td>
+                    <td>310.00</td>
+                    <td>195.00</td>
+                    <td>160.00</td>
+                    <td>153.33</td>
+                    <td>160.00</td>
+                    <td>164.29</td>
+                    <td>177.94</td>
+                    <td>160.00</td>
+                    <td>168.09</td>
+                    <td>134.00</td>
+                    <td>87.50</td>
+                    <td>130.00</td>
+                    <td>55.00</td>
+                    <td>75.00</td>
+                    <td>50.00</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>14</td>-->
+<!--                <td><a href="https://github.com/QwenLM/Qwen-VL/">Qwen-VL-Chat</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://github.com/QwenLM/Qwen-VL/" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen-VL-Chat</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Alibaba</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1848.28</td>
+                    <td>1487.57</td>
+                    <td>360.71</td>
+                    <td>158.33</td>
+                    <td>150.00</td>
+                    <td>128.33</td>
+                    <td>170.00</td>
+                    <td>178.57</td>
+                    <td>120.59</td>
+                    <td>152.25</td>
+                    <td>164.00</td>
+                    <td>125.50</td>
+                    <td>140.00</td>
+                    <td>130.71</td>
+                    <td>40.00</td>
+                    <td>147.50</td>
+                    <td>42.50</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>15</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2304.08485.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaVA</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;"> </p>-->
+                      </b>
+                    </td>
+                    
+                    <td>13B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1826.67</td>
+                    <td>1531.31</td>
+                    <td>295.36</td>
+                    <td>185.00</td>
+                    <td>155.00</td>
+                    <td>133.33</td>
+                    <td>170.00</td>
+                    <td>160.54</td>
+                    <td>152.94</td>
+                    <td>161.25</td>
+                    <td>170.50</td>
+                    <td>117.75</td>
+                    <td>125.00</td>
+                    <td>127.86</td>
+                    <td>42.50</td>
+                    <td>77.50</td>
+                    <td>47.50</td>
+                  </tr>
+                  
+                  <tr>
+<!--                <td>16</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2311.04257.pdf">mPLUG-Owl2</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2311.04257.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">mPLUG-Owl2</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Alibaba</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1763.40</td>
+                    <td>1450.19</td>
+                    <td>313.21</td>
+                    <td>185.00</td>
+                    <td>155.00</td>
+                    <td>88.33</td>
+                    <td>150.00</td>
+                    <td>160.20</td>
+                    <td>164.41</td>
+                    <td>153.25</td>
+                    <td>157.25</td>
+                    <td>134.25</td>
+                    <td>102.50</td>
+                    <td>115.71</td>
+                    <td>35.00</td>
+                    <td>102.50</td>
+                    <td>60.00</td>
+                  </tr>
+                  <tr>
+<!--                <td>17</td>-->
+<!--                <td><a href="https://arxiv.org/pdf/2311.03079.pdf">CogVLM</a></td>-->
+                    <td style="vertical-align: middle;"></td>
+                    <td style="text-align: left; padding: 2px 10px;">
+                      <b class="">
+                        <a href="https://arxiv.org/pdf/2311.03079.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">CogVLM</a>
+<!--                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Zhipu AI</p>-->
+                      </b>
+                    </td>
+                    
+                    <td>7B</td>
+<!--                <td>2024/9/4</td>-->
+                    <td>1752.28</td>
+                    <td>1439.07</td>
+                    <td>313.21</td>
+                    <td>195.00</td>
+                    <td>165.00</td>
+                    <td>103.33</td>
+                    <td>160.00</td>
+                    <td>146.94</td>
+                    <td>115.29</td>
+                    <td>159.25</td>
+                    <td>158.00</td>
+                    <td>88.75</td>
+                    <td>147.50</td>
+                    <td>125.71</td>
+                    <td>60.00</td>
+                    <td>75.00</td>
+                    <td>52.50</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p style="margin-top: -20px;">
+              <strong style="color: #22a56e; font-size: 18px;">Green date</strong> indicates the newly added/updated models 
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              - indicates the unknown quantity of parameters
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="citation">Citation</h1>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <pre><code>@article{fu2023mme,
+    title={MME: A Comprehensive Evaluation Benchmark for Multimodal Large Language Models},
+    author={Fu, Chaoyou and Chen, Peixian and Shen, Yunhang and Qin, Yulei and Zhang, Mengdan and Lin, Xu and Yang, Jinrui and Zheng, Xiawu and Li, Ke and Sun, Xing and others},
+    journal={arXiv preprint arXiv:2306.13394},
+    year={2023}
+    }
+}
+</code></pre>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="width: 60%;">
+  <style>
+      pre {
+        background-color: #f4f4f4;
+        padding: 5px; /* 调整padding为5px */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto; /* 允许水平滚动 */
+    }
+    code {
+        font-family: Consolas, "Courier New", monospace;
+        color: #d63384; /* 代码文本颜色 */
+    }
+  </style>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center;">
+            This website is adapted from <a href="https://mathvista.github.io/">MathVista</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
